@@ -32,15 +32,15 @@ def test3():
     # lives longer than a year,
     # and has an in-degree o 1
     # but is heavily modified afterwards
-    for item in os.listdir(dir_path):
-        # Do not delete the .git directory
+    for item in os.listdir(src):
         if item == ".git":
             continue
-        path = os.path.join(dir_path, item)
-        if os.path.isdir(path):
-            shutil.rmtree(path)
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if os.path.isdir(s):
+            shutil.copytree(s, d, symlinks, ignore)
         else:
-            os.remove(path)
+            shutil.copy2(s, d)
 
 
 def test4():
